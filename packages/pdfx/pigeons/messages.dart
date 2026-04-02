@@ -4,6 +4,7 @@ import 'package:pigeon/pigeon.dart';
   dartOut: 'lib/src/renderer/io/pigeon.dart',
   objcHeaderOut: './ios/Classes/messages.h',
   objcSourceOut: './ios/Classes/messages.m',
+  swiftOut: './ios/pdfx/Sources/pdfx/Messages.g.swift',
   javaOut: './android/src/main/java/dev/flutter/pigeon/Pigeon.java',
   javaOptions: JavaOptions(
     package: 'dev.flutter.pigeon',

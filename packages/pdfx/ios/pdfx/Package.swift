@@ -7,19 +7,13 @@ let package = Package(
         .iOS(.v13),
     ],
     products: [
-        .library(name: "pdfx", targets: ["pdfx", "PdfxCodec"]),
+        .library(name: "pdfx", targets: ["pdfx"]),
     ],
     dependencies: [],
     targets: [
         .target(
-            name: "PdfxCodec",
-            dependencies: [],
-            path: "Sources/PdfxCodec",
-            publicHeadersPath: "include"
-        ),
-        .target(
             name: "pdfx",
-            dependencies: ["PdfxCodec"],
+            dependencies: [],
             path: "Sources/pdfx"
         ),
     ]

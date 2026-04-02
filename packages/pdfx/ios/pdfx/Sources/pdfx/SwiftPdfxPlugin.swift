@@ -1,7 +1,6 @@
 #if os(iOS)
 import Flutter
 import UIKit
-import PdfxCodec
 #elseif os(macOS)
 import Cocoa
 import FlutterMacOS

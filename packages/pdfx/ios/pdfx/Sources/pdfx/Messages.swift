@@ -321,14 +321,14 @@ private class PdfxApiCodecReaderWriter: FlutterStandardReaderWriter {
 
 private var _codecInstance: FlutterStandardMessageCodec?
 
-@objc public func PdfxApiGetCodec() -> NSObject & FlutterMessageCodec {
+public func PdfxApiGetCodec() -> NSObject & FlutterMessageCodec {
     if _codecInstance == nil {
         _codecInstance = FlutterStandardMessageCodec(readerWriter: PdfxApiCodecReaderWriter())
     }
     return _codecInstance!
 }
 
-@objc public func PdfxApiSetup(_ binaryMessenger: FlutterBinaryMessenger, _ api: (NSObjectProtocol & PdfxApi)?) {
+public func PdfxApiSetup(_ binaryMessenger: FlutterBinaryMessenger, _ api: (NSObjectProtocol & PdfxApi)?) {
     let codec = PdfxApiGetCodec()
 
     let openDocumentDataChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.PdfxApi.openDocumentData", binaryMessenger: binaryMessenger, codec: codec)

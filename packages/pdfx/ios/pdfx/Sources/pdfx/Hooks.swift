@@ -1,4 +1,5 @@
 #if os(iOS)
+import UIKit
 
 extension UIColor {
     convenience init(hexString: String) {

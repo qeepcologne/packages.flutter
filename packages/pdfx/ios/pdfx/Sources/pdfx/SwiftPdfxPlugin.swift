@@ -296,7 +296,8 @@ enum PdfRenderError : Error {
 }
 
 class PdfPageTexture : NSObject {
-  var pixBuf : CVPixelBuffer?
+  private var pixBuf : CVPixelBuffer?
+  private let lock = NSLock()
   weak var registrar: FlutterPluginRegistrar?
   var texId: Int64 = 0
   var texWidth: Int = 0
@@ -380,7 +381,9 @@ class PdfPageTexture : NSObject {
     context?.drawPDFPage(page)
     context?.flush()
 
+    lock.lock()
     self.pixBuf = pixBuf
+    lock.unlock()
     #if os(iOS)
       registrar?.textures().textureFrameAvailable(texId)
     #elseif os(macOS)
@@ -391,6 +394,9 @@ class PdfPageTexture : NSObject {
 
 extension PdfPageTexture : FlutterTexture {
   func copyPixelBuffer() -> Unmanaged<CVPixelBuffer>? {
-    return pixBuf != nil ? Unmanaged<CVPixelBuffer>.passRetained(pixBuf!) : nil
+    lock.lock()
+    let buf = pixBuf
+    lock.unlock()
+    return buf != nil ? Unmanaged<CVPixelBuffer>.passRetained(buf!) : nil
   }
 }
